@@ -19,6 +19,7 @@ class CategoryFactory extends Factory
         return [
             'name' => fake()->name(),
             'description' => fake()->paragraph(2),
+            'user_id' => 1
         ];
 
     }

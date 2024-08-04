@@ -17,19 +17,24 @@ class CategorySeeder extends Seeder
     {
         DB::table('categories')->insert([
             'name'=> 'Apartamento',
-            'description' => ''
+            'description' => '',
+            'user_id' => 1
         ]);
 
         DB::table('categories')->insert([
             'name'=> 'Casa',
-            'description' => ''
+            'description' => '',
+            'user_id' => 1
         ]);
         DB::table('categories')->insert([
             'name'=> 'Lote',
-            'description' => ''
+            'description' => '',
+            'user_id' => 1
         ]);
 
-        Category::factory(5)->create();
+        Category::factory()->count(5)->create([
+            'user_id'=> 1
+        ]);
 
     }
 }
