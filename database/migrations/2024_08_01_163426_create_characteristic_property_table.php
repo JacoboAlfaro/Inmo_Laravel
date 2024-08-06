@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('characteristic_property', function (Blueprint $table) {
-            $table->id();
+        Schema::create('characteristic_properties', function (Blueprint $table) {
             $table->string('value', 100);
-            $table->foreignId('characteristic_id')->nullable()->references('id')->on('characteristics')->nullOnDelete()->cascadeOnUpdate();
-            $table->foreignId('property_id')->nullable()->references('id')->on('properties')->nullOnDelete()->cascadeOnUpdate();
+            $table->foreignId('characteristic_id')->references('id')->on('characteristics')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('property_id')->references('id')->on('properties')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->primary(['characteristic_id', 'property_id']);
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('characteristic_property');
+        Schema::dropIfExists('characteristic_properties');
     }
 };

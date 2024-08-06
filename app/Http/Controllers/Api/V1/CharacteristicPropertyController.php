@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Models\CharacteristicProperty;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Requests\Api\v1\CharacteristicProperty\CharacteristicPropertyStoreRequest;
+use App\Http\Requests\Api\v1\CharacteristicProperty\CharacteristicPropertyUpdateRequest;
 
 class CharacteristicPropertyController extends Controller
 {
@@ -20,7 +23,7 @@ class CharacteristicPropertyController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CharacteristicPropertyStoreRequest $request)
     {
         $charProp = CharacteristicProperty::create($request->all());
         return response()->json(['data' => $charProp], 201);
@@ -29,28 +32,35 @@ class CharacteristicPropertyController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(CharacteristicProperty $characteristicProperty)
+    public function show($characteristic_id, $property_id)
     {
-dd($characteristicProperty);
+        $characteristicProperty = DB::table('characteristic_properties')
+                                    ->where('characteristic_id', $characteristic_id)
+                                    ->where('property_id', $property_id)
+                                    ->first();
+        
+        if (!$characteristicProperty) {
+            return response()->json(['message' => 'Record not found.'], 404);
+        }
 
         return response()->json(['data' => $characteristicProperty], 200);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, CharacteristicProperty $characteristicProperty)
-    {
-        $characteristicProperty->update($request->all());
-        return response()->json(['data' => $characteristicProperty], 200);
-    }
+    public function destroy($characteristic_id, $property_id){
+        $characteristicProperty = DB::table('characteristic_properties')
+                                    ->where('characteristic_id', $characteristic_id)
+                                    ->where('property_id', $property_id)
+                                    ->first();
+        
+        if (!$characteristicProperty) {
+            return response()->json(['message' => 'Record not found.'], 404);
+        }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(CharacteristicProperty $characteristicProperty)
-    {
-        $characteristicProperty->delete();
+        DB::table('characteristic_properties')
+        ->where('characteristic_id', $characteristic_id)
+        ->where('property_id', $property_id)
+        ->delete();
+        
         return response(null, 204);
     }
 }

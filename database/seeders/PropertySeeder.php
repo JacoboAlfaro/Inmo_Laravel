@@ -23,7 +23,7 @@ class PropertySeeder extends Seeder
             'business_id' => random_int(1, 3),
         ]);
 
-        Property::factory()->count(10)->create([
+        Property::factory()->count(15)->create([
             'user_id'=> 1
         ]);
     }

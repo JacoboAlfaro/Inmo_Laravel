@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Models\Characteristic;
 use Illuminate\Http\Request;
+use App\Http\Requests\Api\v1\Characteristic\CharacteristicStoreRequest;
+use App\Http\Requests\Api\v1\Characteristic\CharacteristicUpdateRequest;
 
 class CharacteristicController extends Controller
 {
@@ -20,7 +22,7 @@ class CharacteristicController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CharacteristicStoreRequest $request)
     {
         $characteristic = Characteristic::create($request->all());
         return response()->json(['data' => $characteristic], 201);
@@ -37,7 +39,7 @@ class CharacteristicController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Characteristic $characteristic)
+    public function update(CharacteristicUpdateRequest $request, Characteristic $characteristic)
     {
         $characteristic->update($request->all());
         return response()->json(['data' => $characteristic], 200);

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name', 100);
             $table->text('description');
-            $table->enum('data_type', ['String', 'Numeric', 'Boolean']);
+            $table->enum('data_type', ['String', 'Numeric',]);
             $table->timestamps();
         });
     }

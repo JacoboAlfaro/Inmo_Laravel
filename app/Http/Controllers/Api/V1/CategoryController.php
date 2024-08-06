@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
-use App\Http\Requests\Api\v1\CategoryStoreRequest;
-use App\Http\Requests\Api\v1\CategoryUpdateRequest;
+use App\Http\Requests\Api\v1\Category\CategoryStoreRequest;
+use App\Http\Requests\Api\v1\Category\CategoryUpdateRequest;
 use App\Http\Resources\CategoryResource;
 
 

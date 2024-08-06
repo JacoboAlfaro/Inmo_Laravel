@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Api\v1;
+namespace App\Http\Requests\Api\v1\Category;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
@@ -29,8 +29,8 @@ class CategoryStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "name"        => "required|unique:categories,name|min:3|max:100",
-            "description" => "required|min:3|max:2000",
+            "name"        => "required|alpha_dash|unique:categories,name|min:3|max:100",
+            "description" => "required|min:3|max:1000",
             "user_id"   => "nullable|exists:users,id"
         ];
     }

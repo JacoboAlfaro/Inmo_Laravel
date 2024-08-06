@@ -17,10 +17,9 @@ class CharacteristicFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
+            'name' => fake()->word(),
             'description' => fake()->paragraph(1),
-            // 'data_type' => fake()->randomElements(['String','Numeric', 'Boolean'])
-            'data_type' => fake()->numberBetween(1, 3)
+            'data_type' => fake()->numberBetween(1, 2)
         ];
     }
 }

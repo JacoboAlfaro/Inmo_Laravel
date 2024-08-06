@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Models\Location;
 use Illuminate\Http\Request;
+use App\Http\Requests\Api\v1\Location\LocationStoreRequest;
+use App\Http\Requests\Api\v1\Location\LocationUpdateRequest;
 
 class LocationController extends Controller
 {
@@ -20,11 +22,10 @@ class LocationController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(LocationStoreRequest $request)
     {
         $location = Location::create($request->all());
         return response()->json(['data' => $location], 201);
-        
     }
 
     /**
@@ -39,7 +40,7 @@ class LocationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Location $location)
+    public function update(LocationUpdateRequest $request, Location $location)
     {
         $location->update($request->all());
         return response()->json(['data' => $location], 200);

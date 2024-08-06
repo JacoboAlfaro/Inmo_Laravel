@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Models\Business;
 use Illuminate\Http\Request;
+use App\Http\Requests\Api\v1\Business\BusinessStoreRequest;
+use App\Http\Requests\Api\v1\Business\BusinessUpdateRequest;
 
 class BusinessController extends Controller
 {
@@ -20,7 +22,7 @@ class BusinessController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(BusinessStoreRequest $request)
     {
         $business = Business::create($request->all());
         return response()->json(['data' => $business], 201);
@@ -37,7 +39,7 @@ class BusinessController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Business $business)
+    public function update(BusinessUpdateRequest $request, Business $business)
     {
         $business->update($request->all());
         return response()->json(['data' => $business], 200);

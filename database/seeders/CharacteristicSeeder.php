@@ -16,11 +16,29 @@ class CharacteristicSeeder extends Seeder
     public function run(): void
     {
         DB::table('characteristics')->insert([
-            'name'=> 'Apartamento',
+            'name'=> 'banos',
+            'description' => '',
+            'data_type' => 2
+        ]);
+
+        DB::table('characteristics')->insert([
+            'name'=> 'habitaciones',
+            'description' => '',
+            'data_type' => 2
+        ]);
+
+        DB::table('characteristics')->insert([
+            'name'=> 'porteria',
             'description' => '',
             'data_type' => 1
         ]);
 
-        Characteristic::factory()->count(10)->create();
+        DB::table('characteristics')->insert([
+            'name'=> 'piscina',
+            'description' => '',
+            'data_type' => 1
+        ]);
+
+        // Characteristic::factory()->count(20)->create();
     }
 }
